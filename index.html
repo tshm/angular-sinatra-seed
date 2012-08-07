@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang ='en'>
+  <head>
+    <meta charset='utf-8'/>
+    <link href="/mystyle.css" rel="stylesheet"/>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    <title>TV</title>
+  </head>
+  <body class='flick'>
+    <form action='/login' method='post' class='hidden'>
+      <input type='submit' value='login'/>
+    </form>
+    <table id='list' class='hidden'>
+      <thead>
+        <tr>
+          <th>date/time</th>
+          <td>CH</td>
+          <td>title</td>
+          <td>DL | Delete</td>
+        </tr>
+      </thead>
+      <tbody data-bind='foreach: {data: items, afterRender: markup}'>
+        <tr data-bind='attr: {"data-title": title, "data-url": url}'>
+          <th data-bind='text: time'>date/time</th>
+          <td data-bind='text: ch'>CH</td>
+          <td>
+            <div class='playbuttons' data-bind='click: play'>
+              <a class='play' data-size='1x' data-bind='text: title'>play</a>
+              <a class='play2x' data-size='2x' href='#'>play 2x</a>
+            </div>
+          </td>
+          <td>
+            <span>
+              <a class='url' data-bind='attr: {href: url}'>download</a>
+              <a class='mpg' data-bind='attr: {href: mpgname}'>download mpg</a>
+            </span>
+            <a class='delete' data-bind='click: remove'>DELETE</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class='hidden' id='videodialog'>
+      <div class='playing2x' id='player'></div>
+      <div id='control'>
+        <div id='progress'></div>
+        <span id='seek'>
+          <button class='seek-first' id='start'>seek first</button>
+          <button class='seek-prev' id='revL'>seek prev long</button>
+          <!-- -->
+          <button class='carat-1-w' id='rev'>seek prev</button>
+          <button class='carat-1-e' id='fwd'>seek next</button>
+          <button class='seek-next' id='fwdL'>seek next long</button>
+        </span>
+        <span id='volume'>
+          <button class='volume-off' id='voldown'>vol down</button>
+          <button class='volume-on' id='volup'>vol up</button>
+        </span>
+      </div>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.0.0/knockout-min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js'></script>
+    <script src="/jplayer/jquery.jplayer.min.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>
